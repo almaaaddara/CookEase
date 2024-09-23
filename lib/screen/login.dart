@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mama_recipe/screen/regist.dart';
+import 'package:mama_recipe/screen/bottomnavbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -98,7 +99,14 @@ class _LoginPageState extends State<LoginPage> {
                           width: double.infinity,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const BottomNavbar(),
+                                ),
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Color(0xFF987D9A), // Warna tombol
