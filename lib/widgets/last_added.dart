@@ -27,21 +27,16 @@ class LastAdded extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         SizedBox(
-          height: 260, // Tinggi total widget grid
-          child: GridView.builder(
+          height: 200, // Tinggi untuk setiap item
+          child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              childAspectRatio: 1.3,
-              mainAxisSpacing: 10,
-            ),
             itemCount: foods.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {}, // Tidak diarahkan ke halaman lain
                 child: Container(
-                  width: 200, // Lebar tiap item
                   margin: const EdgeInsets.only(right: 10),
+                  width: 200,
                   child: Stack(
                     children: [
                       Column(
@@ -99,7 +94,7 @@ class LastAdded extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          ),
+                          )
                         ],
                       ),
                       Positioned(
@@ -110,7 +105,7 @@ class LastAdded extends StatelessWidget {
                           iconSize: 20,
                           icon: const Icon(Icons.favorite),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),

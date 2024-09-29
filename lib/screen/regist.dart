@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mama_recipe/utils/color_theme.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,8 +19,8 @@ class _RegisterPageState extends State<RegisterPage> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             colors: [
-              Color(0xFF987D9A), // Warna pertama
-              Color(0xFFBB9AB1), // Warna kedua
+              AppColor.primary, // Warna pertama
+              AppColor.secondary, // Warna kedua
             ],
           ),
         ),
@@ -62,13 +63,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
                             border: Border(
-                              bottom: BorderSide(color: Color(0xFFBB9AB1)),
+                              bottom: BorderSide(color: AppColor.secondary),
                             ),
                           ),
                           child: const TextField(
                             decoration: InputDecoration(
                               hintText: "Username",
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle:
+                                  TextStyle(color: AppColor.textSecondary),
                               border: InputBorder.none,
                             ),
                           ),
@@ -79,13 +81,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
                             border: Border(
-                              bottom: BorderSide(color: Color(0xFFBB9AB1)),
+                              bottom: BorderSide(color: AppColor.secondary),
                             ),
                           ),
                           child: const TextField(
                             decoration: InputDecoration(
                               hintText: "Email",
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle:
+                                  TextStyle(color: AppColor.textSecondary),
                               border: InputBorder.none,
                             ),
                           ),
@@ -96,14 +99,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
                             border: Border(
-                              bottom: BorderSide(color: Color(0xFFBB9AB1)),
+                              bottom: BorderSide(color: AppColor.secondary),
                             ),
                           ),
                           child: const TextField(
                             obscureText: true,
                             decoration: InputDecoration(
                               hintText: "Password",
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle:
+                                  TextStyle(color: AppColor.textSecondary),
                               border: InputBorder.none,
                             ),
                           ),
@@ -114,14 +118,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
                             border: Border(
-                              bottom: BorderSide(color: Color(0xFFBB9AB1)),
+                              bottom: BorderSide(color: AppColor.primary),
                             ),
                           ),
                           child: const TextField(
                             obscureText: true,
                             decoration: InputDecoration(
                               hintText: "Confirm Password",
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle:
+                                  TextStyle(color: AppColor.textSecondary),
                               border: InputBorder.none,
                             ),
                           ),
@@ -134,8 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color(0xFF987D9A), // Warna tombol
+                              backgroundColor: AppColor.primary, // Warna tombol
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
@@ -156,7 +160,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: <Widget>[
                             const Text(
                               "Already have an account? ",
-                              style: TextStyle(color: Colors.grey),
+                              style: TextStyle(color: AppColor.textSecondary),
                             ),
                             GestureDetector(
                               onTap: () {
@@ -165,7 +169,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: const Text(
                                 "Login",
                                 style: TextStyle(
-                                  color: Color(0xFF987D9A),
+                                  color: AppColor.primary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

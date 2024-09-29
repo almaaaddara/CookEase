@@ -14,7 +14,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'CookEase',
       theme: ThemeData(
-        fontFamily: ('Roboto'),
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(fontFamily: 'Poppins'),
+          headline1: TextStyle(
+              fontFamily: 'Poppins', fontSize: 24, fontWeight: FontWeight.bold),
+          headline2: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.italic),
+        ),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,

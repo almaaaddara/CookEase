@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mama_recipe/utils/color_theme.dart';
 import 'package:mama_recipe/screen/regist.dart';
 import 'package:mama_recipe/screen/bottomnavbar.dart';
 
@@ -10,6 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,37 +23,35 @@ class _LoginPageState extends State<LoginPage> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             colors: [
-              Color(0xFF987D9A), // Warna pertama
-              Color(0xFFBB9AB1), // Warna kedua
+              AppColor.light, // Warna pertama
+              AppColor.bgLight, // Warna kedua
             ],
           ),
         ),
-        // Tittle Text
+        // Logo
         child: Column(
           children: <Widget>[
             const SizedBox(height: 80),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
-                    "Login",
-                    style: TextStyle(color: Colors.white, fontSize: 40),
-                  ),
-                  SizedBox(height: 10),
-                ],
-              ),
+            Image.asset(
+              'assets/logo.png', // Path gambar logo
+              height: 130, // Tinggi logo
+              width: 130, // Lebar logo
             ),
-            const SizedBox(height: 70),
-            // Login Field (Kotak Putih)
+            const SizedBox(height: 15),
+            Text("Cook with Ease, Savor Every Bite!",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2!
+                    .copyWith(color: AppColor.primary)),
+            const SizedBox(height: 25),
+            // Login Container (Kotak Putih)
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(60),
-                    topRight: Radius.circular(60),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
                 ),
                 // Text Field Login Form
@@ -59,41 +60,71 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
+                        Text("Login Your Account",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline1!
+                                .copyWith(color: AppColor.primary)),
+                        const SizedBox(height: 25),
                         // Email
                         Container(
                           padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(color: Color(0xFFBB9AB1)),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              prefixIcon:
+                                  Icon(Icons.person, color: AppColor.primary),
+                              labelText: "Email",
+                              labelStyle: TextStyle(color: AppColor.primary),
+                              hintText: "example@gmail.com",
+                              hintStyle:
+                                  TextStyle(color: AppColor.textSecondary),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              // fillColor: AppColor.bgLight,
+                              // filled: true,
                             ),
                           ),
-                          child: const TextField(
+                        ),
+                        const SizedBox(height: 5),
+                        // Password
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          child: TextField(
+                            obscureText:
+                                _isObscure, // Mengatur status visibilitas
                             decoration: InputDecoration(
-                              hintText: "Email",
-                              hintStyle: TextStyle(color: Colors.grey),
-                              border: InputBorder.none,
+                              prefixIcon: Icon(
+                                Icons.fingerprint,
+                                color: AppColor.primary,
+                              ),
+                              labelText: "Password",
+                              labelStyle: TextStyle(color: AppColor.primary),
+                              hintText: "*****",
+                              hintStyle:
+                                  TextStyle(color: AppColor.textSecondary),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              // Ikon untuk mengubah visibilitas password
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isObscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: AppColor.secondary,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure =
+                                        !_isObscure; // Toggle visibility
+                                  });
+                                },
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 20),
-                        // Password
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(color: Color(0xFFBB9AB1)),
-                            ),
-                          ),
-                          child: const TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              hintText: "Password",
-                              hintStyle: TextStyle(color: Colors.grey),
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 40),
                         // Tombol Login
                         SizedBox(
                           width: double.infinity,
@@ -108,18 +139,14 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Color(0xFF987D9A), // Warna tombol
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            child: const Text(
+                                backgroundColor: AppColor.primary,
+                                shape: RoundedRectangleBorder()),
+                            child: Text(
                               "Login",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         ),
@@ -128,9 +155,12 @@ class _LoginPageState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            const Text(
+                            Text(
                               "Don't have an account? ",
-                              style: TextStyle(color: Colors.grey),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(color: AppColor.secondary),
                             ),
                             GestureDetector(
                               onTap: () {
@@ -144,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: const Text(
                                 "Register",
                                 style: TextStyle(
-                                  color: Color(0xFF987D9A),
+                                  color: AppColor.primary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
