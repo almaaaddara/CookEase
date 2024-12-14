@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mama_recipe/utils/color_theme.dart';
 
 class Steps extends StatelessWidget {
-  final List<String> steps;
-  final Function() addStep;
-  final Function(int index, String value) onStepChanged;
+  final List<TextEditingController> stepControllers;
+  final VoidCallback addStep;
+  final Function(int index) onRemoveStep;
 
   const Steps({
     Key? key,
-    required this.steps,
+    required this.stepControllers,
     required this.addStep,
-    required this.onStepChanged,
+    required this.onRemoveStep,
   }) : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class Steps extends StatelessWidget {
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: steps.length,
+          itemCount: stepControllers.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -38,11 +39,14 @@ class Steps extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
+                      controller: stepControllers[index],
                       decoration: const InputDecoration(
                         labelText: 'Step Description',
                         border: OutlineInputBorder(),
                       ),
-                      onChanged: (value) => onStepChanged(index, value),
+                      maxLines: 3, // Membatasi baris input menjadi maksimal 2
+                      keyboardType: TextInputType
+                          .multiline, // Memungkinkan input multiline
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the step description';
@@ -51,6 +55,10 @@ class Steps extends StatelessWidget {
                       },
                     ),
                   ),
+                  IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => onRemoveStep(index),
+                  ),
                 ],
               ),
             );
@@ -58,7 +66,10 @@ class Steps extends StatelessWidget {
         ),
         TextButton(
           onPressed: addStep,
-          child: const Text('Add Step'),
+          child: const Text(
+            'Add Step',
+            style: TextStyle(color: AppColor.primary),
+          ),
         ),
       ],
     );

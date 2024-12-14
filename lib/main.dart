@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mama_recipe/screen/login.dart';
+import 'package:mama_recipe/utils/color_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -11,18 +20,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return MaterialApp(
       title: 'CookEase',
       theme: ThemeData(
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(fontFamily: 'Poppins'),
-          headline1: TextStyle(
-              fontFamily: 'Poppins', fontSize: 24, fontWeight: FontWeight.bold),
-          headline2: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.italic),
+        primaryColor: AppColor.primary,
+        textTheme: GoogleFonts.poppinsTextTheme(),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColor.secondary,
+          foregroundColor: Colors.white,
         ),
         useMaterial3: true,
       ),

@@ -11,5 +11,5 @@ class AppColor {
   static const Color textSecondary = Colors.grey; // Adjust if needed
 
   // Background color
-  static const Color bgLight = Color(0xfff1f5f9); // Adjust if needed
+  static Color bgLight = Colors.grey.shade300; // Adjust if needed
 }

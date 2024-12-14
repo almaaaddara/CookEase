@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mama_recipe/screen/home.dart';
 import 'package:mama_recipe/screen/addrecipe.dart';
 import 'package:mama_recipe/screen/profile.dart';
+import 'package:mama_recipe/utils/color_theme.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
@@ -30,26 +31,33 @@ class _BottomNavbarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions[_selectedIndex], // Menampilkan halaman sesuai tab
+      body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
+            icon: _selectedIndex == 0
+                ? const Icon(Icons.home)
+                : const Icon(Icons.home_outlined),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: '',
+            icon: _selectedIndex == 1
+                ? const Icon(Icons.add_box)
+                : const Icon(Icons.add_box_outlined),
+            label: 'Add Recipe',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: '',
+            icon: _selectedIndex == 2
+                ? const Icon(Icons.person_2)
+                : const Icon(Icons.person_2_outlined),
+            label: 'Profile',
           ),
         ],
-        currentIndex: _selectedIndex, // Index terpilih
-        selectedItemColor: Color(0xFF987D9A),
-        unselectedItemColor: Colors.grey[600], // Warna icon terpilih
-        onTap: _onItemTapped, // Pindah tab sesuai item yang ditekan
+        currentIndex: _selectedIndex,
+        backgroundColor: AppColor.primary,
+        selectedItemColor: AppColor.light,
+        unselectedItemColor: Colors.white,
+        onTap: _onItemTapped,
       ),
     );
   }

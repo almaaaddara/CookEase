@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mama_recipe/utils/color_theme.dart';
 
 class Ingredients extends StatelessWidget {
-  final List<Map<String, String>> ingredients;
+  final List<TextEditingController> nameControllers;
+  final List<TextEditingController> quantityControllers;
   final VoidCallback addIngredient;
-  final Function(int index, String value) onNameChanged;
-  final Function(int index, String value) onQuantityChanged;
+  final Function(int index) onRemoveIngredient;
 
   const Ingredients({
     Key? key,
-    required this.ingredients,
+    required this.nameControllers,
+    required this.quantityControllers,
     required this.addIngredient,
-    required this.onNameChanged,
-    required this.onQuantityChanged,
+    required this.onRemoveIngredient,
   }) : super(key: key);
 
   @override
@@ -21,26 +22,31 @@ class Ingredients extends StatelessWidget {
       children: [
         const Text(
           'Ingredients',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: ingredients.length,
+          itemCount: nameControllers.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Row(
+                key: ValueKey(index), // Gunakan index sebagai key
                 children: [
                   Expanded(
                     child: TextFormField(
-                      decoration: const InputDecoration(
+                      controller: nameControllers[index],
+                      decoration: InputDecoration(
                         labelText: 'Ingredient',
-                        border: OutlineInputBorder(),
+                        labelStyle: TextStyle(color: AppColor.primary),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: AppColor.primary)),
                       ),
-                      onChanged: (value) {
-                        onNameChanged(index, value);
-                      },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter an ingredient';
@@ -52,13 +58,14 @@ class Ingredients extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
-                      decoration: const InputDecoration(
+                      controller: quantityControllers[index],
+                      decoration: InputDecoration(
                         labelText: 'Quantity',
-                        border: OutlineInputBorder(),
+                        labelStyle: TextStyle(color: AppColor.primary),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: AppColor.primary)),
                       ),
-                      onChanged: (value) {
-                        onQuantityChanged(index, value);
-                      },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the quantity';
@@ -67,6 +74,10 @@ class Ingredients extends StatelessWidget {
                       },
                     ),
                   ),
+                  IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => onRemoveIngredient(index),
+                  ),
                 ],
               ),
             );
@@ -74,7 +85,10 @@ class Ingredients extends StatelessWidget {
         ),
         TextButton(
           onPressed: addIngredient,
-          child: const Text('Add Ingredient'),
+          child: const Text(
+            'Add Ingredient',
+            style: TextStyle(color: AppColor.primary),
+          ),
         ),
       ],
     );

@@ -1,61 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:mama_recipe/models/category.dart';
+import 'package:mama_recipe/screen/food_category.dart';
 
 class Categories extends StatelessWidget {
   const Categories({
     super.key,
     required this.currentCat,
-    required this.onCategorySelected, // Tambahkan parameter callback
+    required this.onCategorySelected,
   });
 
   final String currentCat;
-  final ValueChanged<String>
-      onCategorySelected; // Callback untuk kategori yang dipilih
+  final ValueChanged<String> onCategorySelected;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-          categories.length,
-          (index) => GestureDetector(
-            onTap: () {
-              onCategorySelected(
-                  categories[index]); // Panggil callback saat kategori dipilih
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: currentCat == categories[index]
-                    ? Color(0xFF987D9A) // Warna dari palet Anda (dipilih)
-                    : Colors.transparent, // Warna default (tidak dipilih)
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(
-                  color: currentCat == categories[index]
-                      ? Color(0xFF987D9A) // Warna border kategori yang dipilih
-                      : Color(
-                          0xFFBB9AB1), // Warna border kategori yang tidak dipilih
-                ),
+    return GridView.builder(
+      shrinkWrap: true, // Untuk membatasi grid view di dalam scroll
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, // Jumlah kolom dalam grid
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 3 / 2, // Rasio lebar/tinggi tiap item grid
+      ),
+      itemCount: categories.length,
+      itemBuilder: (context, index) {
+        final category = categories[index];
+        return GestureDetector(
+          onTap: () {
+            // Navigasi ke halaman FoodCategoryPage dengan kategori yang dipilih
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    FoodCategoryPage(category: category["name"]!),
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
-              ),
-              margin: const EdgeInsets.only(right: 20),
-              child: Text(
-                categories[index],
-                style: TextStyle(
-                  color: currentCat == categories[index]
-                      ? Color(0xFFFEFBD8) // Warna teks kategori yang dipilih
-                      : Color(
-                          0xFF987D9A), // Warna teks kategori yang tidak dipilih
-                  fontWeight: FontWeight.bold,
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              image: DecorationImage(
+                image: AssetImage(category["image"]!),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.3), // Berlaku untuk semua kategori
+                  BlendMode.darken,
                 ),
               ),
             ),
+            alignment: Alignment.center,
+            child: Text(
+              category["name"]!,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mama_recipe/models/food.dart';
 
 class FoodCard extends StatelessWidget {
-  final Food food;
-  const FoodCard({super.key, required this.food});
+  final Recipe recipe;
+  const FoodCard({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,14 @@ class FoodCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    image: AssetImage(food.image ?? 'assets/default.jpg'),
-                    fit: BoxFit.cover, // Menggunakan BoxFit.cover
+                    image: AssetImage(recipe.image ?? 'assets/default.jpg'),
+                    fit: BoxFit.fitWidth, // Menggunakan BoxFit.cover
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Text(
-                food.title,
+                recipe.title,
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -36,12 +36,12 @@ class FoodCard extends StatelessWidget {
               Row(
                 children: [
                   const Icon(
-                    Icons.flash_on, // Menggunakan Icon bawaan Flutter
+                    Icons.restaurant, // Menggunakan Icon bawaan Flutter
                     size: 18,
                     color: Colors.grey,
                   ),
                   Text(
-                    "${food.servings} Servings",
+                    "${recipe.servings} Servings",
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -57,7 +57,7 @@ class FoodCard extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   Text(
-                    "${food.cookTime} Min",
+                    "${recipe.cookTime} Min",
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,

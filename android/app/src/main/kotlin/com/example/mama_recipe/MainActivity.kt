@@ -1,4 +1,4 @@
-package com.example.mama_recipe
+package com.cookease
 
 import io.flutter.embedding.android.FlutterActivity
 

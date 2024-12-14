@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "766944778648",
+    "project_id": "kostion-fc656",
+    "storage_bucket": "kostion-fc656.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766944778648:android:a821870d77ef48672db3ed",
+        "android_client_info": {
+          "package_name": "com.cookease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkLp8k0q5ZVIFG2MY55CV6kVmGjzCi8RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766944778648:android:e7232ade97f9384e2db3ed",
+        "android_client_info": {
+          "package_name": "com.cookease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkLp8k0q5ZVIFG2MY55CV6kVmGjzCi8RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766944778648:android:e650377b2c30dafe2db3ed",
+        "android_client_info": {
+          "package_name": "com.cookease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkLp8k0q5ZVIFG2MY55CV6kVmGjzCi8RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
